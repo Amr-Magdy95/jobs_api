@@ -45,4 +45,8 @@ userSchema.methods.getToken = function () {
   return token;
 };
 
+userSchema.methods.comparePasswords = async function (pwToBeTested) {
+  return await bcryptjs.compare(pwToBeTested, this.password);
+};
+
 module.exports = mongoose.model("User", userSchema);
