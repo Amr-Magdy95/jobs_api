@@ -13,7 +13,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/v1/auth", require("./routes/auth"));
-app.use("/api/v1/jobs", require("./routes/jobs"));
+app.use("/api/v1/jobs", require("./middleware/auth"), require("./routes/jobs"));
 
 // error handler and 404
 app.use(require("./middleware/notFound"));
