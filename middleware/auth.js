@@ -13,7 +13,6 @@ const authenticateUser = async (req, res, next) => {
       "-password"
     );
     req.user = { id: foundUser._id, name: foundUser.name };
-    console.log(foundUser);
     next();
   } catch (err) {
     throw new UnauthenticatedError("Invalid Token");
