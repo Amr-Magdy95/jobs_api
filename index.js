@@ -4,6 +4,10 @@ require("express-async-errors");
 const express = require("express");
 const app = express();
 
+// Swagger
+const swaggerUI = require("swagger-ui-express");
+const swaggerDoc = require("yamljs").load("./swagger.yaml");
+
 // middleware
 app.set("trust proxy", 1);
 app.use(
@@ -18,9 +22,8 @@ app.use(require("cors")());
 app.use(require("xss-clean")());
 
 // routes
-app.get("/", (req, res) => {
-  res.send("jobs api");
-});
+
+app.use("/", swaggerUI.serve, swaggerUI.setup(swaggerDoc));
 
 app.use("/api/v1/auth", require("./routes/auth"));
 app.use("/api/v1/jobs", require("./middleware/auth"), require("./routes/jobs"));

@@ -1,0 +1,59 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Jobs API",
+    "contact": {},
+    "version": "1.0"
+  },
+  "servers": [{ "url": "http://localhost:5000" }],
+  "paths": {
+    "/auth/register": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Register User",
+        "operationId": "RegisterUser",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterUserRequest",
+                "example": {
+                  "name": "bob",
+                  "email": "bob@gmail.com",
+                  "password": "secret"
+                },
+                "required": true
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "",
+              "headers": {}
+            },
+            "deprecated": false,
+            "security": []
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "RegisterUserRequest": {
+        "title": "RegisterUserRequest",
+        "type": "object",
+        "properties": [
+          { "email": { "type": "string" } },
+          { "password": { "type": "string" } }
+        ],
+        "example": {
+          "email": "susan@gmail.com",
+          "password": "secret"
+        }
+      }
+    }
+  }
+}
