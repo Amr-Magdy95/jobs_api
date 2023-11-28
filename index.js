@@ -1,4 +1,4 @@
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 require("dotenv").config();
 require("express-async-errors");
 
@@ -21,9 +21,7 @@ app.use(require("xss-clean")());
 // routes
 
 app.get("/", (req, res) => {
-  res.send(
-    "<h1>Jobs API</h1> <a href='/api/v1/auth/register'>Register Now!</a>"
-  );
+  res.send("<h1>Jobs API</h1>");
 });
 
 app.use("/api/v1/auth", require("./routes/auth"));
