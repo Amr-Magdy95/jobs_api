@@ -1,3 +1,4 @@
+const port = process.env.PORT || 5000;
 require("dotenv").config();
 require("express-async-errors");
 
@@ -31,8 +32,6 @@ app.use("/api/v1/jobs", require("./middleware/auth"), require("./routes/jobs"));
 // error handler and 404
 app.use(require("./middleware/notFound"));
 app.use(require("./middleware/errorHandler"));
-
-const port = process.env.PORT || 5000;
 
 const start = async () => {
   try {
