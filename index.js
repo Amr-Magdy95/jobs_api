@@ -4,10 +4,6 @@ require("express-async-errors");
 const express = require("express");
 const app = express();
 
-// Swagger
-const swaggerUI = require("swagger-ui-express");
-const swaggerDoc = require("yamljs").load("./swagger.yaml");
-
 // middleware
 app.set("trust proxy", 1);
 app.use(
@@ -23,7 +19,11 @@ app.use(require("xss-clean")());
 
 // routes
 
-app.use("/", swaggerUI.serve, swaggerUI.setup(swaggerDoc));
+app.get("/", (req, res) => {
+  res.send(
+    "<h1>Jobs API</h1> <a href='/api/v1/auth/register'>Register Now!</a>"
+  );
+});
 
 app.use("/api/v1/auth", require("./routes/auth"));
 app.use("/api/v1/jobs", require("./middleware/auth"), require("./routes/jobs"));
